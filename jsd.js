@@ -1,3 +1,9 @@
+/* jQuery-simple-dropdown
+ * easy to use drop down menu plugin for jQuery using mustache.js templates.
+ * (c) 2012 David (daXXog) Volm ><> + + + <><
+ * Released under Apache License, Version 2.0:
+ * http://www.apache.org/licenses/LICENSE-2.0.html  
+ */
 $.jsd = function(data, event, template) {
     var _data = {"menu": data}; //make the data ready for mustache
     
