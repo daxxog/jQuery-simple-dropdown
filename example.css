@@ -1,0 +1,16 @@
+.jsd-container {
+    background-color: #C2EBFF;
+    padding: 0px;
+    margin: 0px;
+}
+
+.jsd-title:hover {
+    background-color: #94FF94;
+}
+
+.jsd-link {
+    color: #33001A;
+    font-size: 130%;
+    padding: 10px;
+    text-decoration: none;
+}

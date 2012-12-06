@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <script type="text/javascript" src="./jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="./jquery.mustache.min.js"></script>
+        <script type="text/javascript" src="./jsd.js"></script>
+        <link rel="stylesheet" type="tex/css" href="./example.css" />
+        
+        <script type="text/javascript">
+            $(function() {
+                $("#dd").click(function(event) {
+                    $.jsd([
+                        {
+                            title: "Option 1",
+                            href: "#o1",
+                        },
+                        {
+                            title: "Option 2",
+                            href: "#o2",
+                        },
+                        {
+                            title: "Option 3",
+                            href: "#o3",
+                        },
+                    ], event);
+                });
+            });
+        </script>
+    </head>
+    
+    <body>
+        <a href="#" id="dd">click to test jQuery-simple-dropdown</a>
+    </body>
+
+</html>
