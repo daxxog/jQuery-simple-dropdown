@@ -34,9 +34,21 @@ $.jsd = function(data, event, template) {
         });
     }
     
-    _el.slideDown(); //show the menu by sliding down
-    
-    $('.jsd-container').mouseleave(function(event) { //bind the mouseleave event to the menu
-        $('.jsd-container').fadeOut(); //kill the menu
-    });
+    _el.slideDown(function() { //show the menu by sliding down
+        var _clickev = (typeof $.mobile === 'undefined') ? 'click' : 'vclick', //if we have $.mobile use virtual mouse event
+            _killmenu = function() { //function to kill the menu
+            $(document).off(_clickev, _killmenu);
+            $('.jsd-container').fadeOut();
+        };
+        
+        $('.jsd-container').mouseleave(function(event) { //bind the mouseleave event to the menu
+            _killmenu();
+        });
+        
+        $('.jsd-container').on(_clickev, function(e) { //every click event except this one kills the menu
+            e.stopPropagation();
+        });
+        
+        $(document).on(_clickev, _killmenu);
+    }); 
 };
