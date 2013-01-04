@@ -19,12 +19,22 @@ $.jsd = function(data, event, template) {
     template = '<div class="jsd-container">' + template + '</div>'; //always put the template in the container
     $('.jsd-container').remove(); //remove all open menus
     
-    $($.mustache(template, _data)).css({  //render and display menu
-        left: event.pageX-10,
+    var _left = event.pageX-10; //figure out what left is
+    
+    var _el = $($.mustache(template, _data)).css({ //render and display menu
+        left: _left,
         top: event.pageY-10,
         position: "absolute",
         display: "none",
-    }).appendTo(document.body).slideDown();
+    }).appendTo(document.body);
+    
+    if(_el.width()+_left > $(document.body).width()) { //check if overflow
+        _el.css({
+            left: $(document.body).width() - _el.width() - 10 //adjust the position
+        });
+    }
+    
+    _el.slideDown(); //show the menu by sliding down
     
     $('.jsd-container').mouseleave(function(event) { //bind the mouseleave event to the menu
         $('.jsd-container').fadeOut(); //kill the menu

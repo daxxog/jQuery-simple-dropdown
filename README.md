@@ -4,13 +4,18 @@ jQuery-simple-dropdown
 easy to use drop down menu plugin for [jQuery](http://jquery.com/) using [mustache.js](https://github.com/janl/mustache.js/) templates.
 
 Dependencies
------
+------------
 * [jQuery](http://jquery.com/)
 * [mustache.js](https://github.com/janl/mustache.js/)
 
+Install on [coffeeshop.js](https://github.com/daxxog/coffeeshop.js)
+--------------------------------------------------------------------
+```bash
+npm install https://github.com/daxxog/jQuery-simple-dropdown/tarball/master
+```
+
 Usage
 -----
-
 ```javascript
 $("#dd").click(function(event) {
     $.jsd([
@@ -28,4 +33,10 @@ $("#dd").click(function(event) {
         },
     ], event);
 });
+```
+
+Building
+--------
+```bash
+node make
 ```
