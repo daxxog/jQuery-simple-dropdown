@@ -24,7 +24,11 @@
                             title: "Option 3",
                             href: "#o3",
                         },
-                    ], event);
+                    ], event).on('jsd-open', function() {
+                        console.log('Menu opened.');
+                    }).on('jsd-close', function() {
+                        console.log('Menu closed.');
+                    });
                 });
             });
         </script>

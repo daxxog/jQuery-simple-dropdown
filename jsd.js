@@ -5,8 +5,8 @@
  * http://www.apache.org/licenses/LICENSE-2.0.html  
  */
 $.jsd = function(data, event, template) {
-    var _data = {"menu": data}; //make the data ready for mustache
-    
+    var _data = {"menu": data}, //make the data ready for mustache
+        that = $(event.delegateTarget); //what we did an event on
     
     if(typeof template == 'undefined') { //pre-defined template
         template = '{{#menu}}'+
@@ -35,10 +35,14 @@ $.jsd = function(data, event, template) {
     }
     
     _el.slideDown(function() { //show the menu by sliding down
+        that.trigger('jsd-open'); //trigger the open event
+        
         var _clickev = (typeof $.mobile === 'undefined') ? 'click' : 'vclick', //if we have $.mobile use virtual mouse event
             _killmenu = function() { //function to kill the menu
             $(document).off(_clickev, _killmenu);
-            $('.jsd-container').fadeOut();
+            $('.jsd-container').fadeOut(function() {
+                that.trigger('jsd-close'); //trigger the close event
+            });
         };
         
         $('.jsd-container').mouseleave(function(event) { //bind the mouseleave event to the menu
@@ -51,4 +55,6 @@ $.jsd = function(data, event, template) {
         
         $(document).on(_clickev, _killmenu);
     }); 
+    
+    return that;
 };
