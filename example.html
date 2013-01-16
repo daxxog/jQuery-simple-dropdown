@@ -25,9 +25,13 @@
                             href: "#o3",
                         },
                     ], event).on('jsd-open', function() {
-                        console.log('Menu opened.');
+                        console.log('jQuery Event: Menu opened.');
                     }).on('jsd-close', function() {
-                        console.log('Menu closed.');
+                        console.log('jQuery Event: Menu closed.');
+                    }).ev.on('jsd-open', function() {
+                        console.log('MicroEvent: Menu opened.');
+                    }).ev.on('jsd-close', function() {
+                        console.log('MicroEvent: Menu closed.');
                     });
                 });
             });

@@ -8,6 +8,29 @@ $.jsd = function(data, event, template) {
     var _data = {"menu": data}, //make the data ready for mustache
         that = $(event.delegateTarget); //what we did an event on
     
+    that.ev = { //from microevent.js
+        /*bind*/on : function(event, fct) {
+            this._events = this._events || {};
+            this._events[event] = this._events[event]	|| [];
+            this._events[event].push(fct);
+            return that;
+        },
+        /*unbind*/off : function(event, fct) {
+            this._events = this._events || {};
+            if( event in this._events === false  )	return;
+            this._events[event].splice(this._events[event].indexOf(fct), 1);
+            return that;
+        },
+        trigger	: function(event /* , args... */) {
+            that.trigger(event);
+            this._events = this._events || {};
+            if( event in this._events === false  ) 	return;
+                for(var i = 0; i < this._events[event].length; i++){
+                    this._events[event][i].apply(this, Array.prototype.slice.call(arguments, 1));
+                }
+            }
+    };
+    
     if(typeof template == 'undefined') { //pre-defined template
         template = '{{#menu}}'+
         '<div class="jsd-item">'+
@@ -35,13 +58,13 @@ $.jsd = function(data, event, template) {
     }
     
     _el.slideDown(function() { //show the menu by sliding down
-        that.trigger('jsd-open'); //trigger the open event
+        that.ev.trigger('jsd-open'); //trigger the open event
         
         var _clickev = (typeof $.mobile === 'undefined') ? 'click' : 'vclick', //if we have $.mobile use virtual mouse event
             _killmenu = function() { //function to kill the menu
             $(document).off(_clickev, _killmenu);
             $('.jsd-container').fadeOut(function() {
-                that.trigger('jsd-close'); //trigger the close event
+                that.ev.trigger('jsd-close'); //trigger the close event
             });
         };
         
