@@ -3,7 +3,7 @@
     "description" : "easy to use drop down menu plugin for jQuery using mustache.js templates.",
     "homepage"    : "https://github.com/daxxog/jQuery-simple-dropdown",
     "main"        : "jsd.js",
-    "version"     : "0.0.1",
+    "version"     : "0.0.2",
     "engines": { "node" : ">=0.8.15" },
     "maintainers": [{
         "name"  : "David Volm",
