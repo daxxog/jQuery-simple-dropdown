@@ -40,3 +40,7 @@ Building
 ```bash
 node make
 ```
+
+Uses code from
+---------------
+* [microevent.js](https://github.com/jeromeetienne/microevent.js)
